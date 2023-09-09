@@ -35,8 +35,8 @@ const userSchema = new mongoose.Schema({
 	},
 	role:{
 		type : String,
-		required: [true, "Role is required"],
-		enum:["admin", "user", "superAdmin"],
+		//required: [true, "Role is required"],
+		enum:["admin", "customer", "superAdmin"],
 		default: "customer",
 	},
 	purchases:{
@@ -66,5 +66,9 @@ userSchema.pre('save', async function (next) {
 	}
   });
   
+  userSchema.methods.comparePassword = async function(candidatePassword) {
+	const isMatch = await bcrypt.compare(candidatePassword, this.password);
+	return isMatch;
+  };
 
 export const userModel = mongoose.model('users',userSchema)
