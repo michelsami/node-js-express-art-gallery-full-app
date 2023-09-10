@@ -6,8 +6,6 @@ import { createUserValidation, updateUserValidation } from '../utils/validator/u
 export const AuthenticationRouter = express.Router();
 
 
-
-
 AuthenticationRouter.route('/register')
 	.post(createUserValidation, register)
 
