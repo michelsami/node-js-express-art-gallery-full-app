@@ -4,7 +4,7 @@ import { AuthenticationRouter } from "./routes/auth-route.js";
 import { connectionDB } from "./config/DBConnection.js";
 import { router as productRouter } from "./routes/product-route.js";
 import { router as orderRouter } from "./routes/order-route.js";
-import mongoose from "mongoose";
+import { router as cartRouter } from "./routes/cart-route.js";
 
 dotenv.config();
 
@@ -18,6 +18,7 @@ app.use(express.json());
 
 app.use("/auth", AuthenticationRouter);
 app.use("/products", productRouter);
+app.use("/carts", cartRouter);
 app.use("/orders", orderRouter);
 
 // mongoose
